@@ -75,3 +75,29 @@ for (let i = 0; i < team.length; i++) {
     }
     
 }
+
+
+//stampo a schermo
+
+const container = document.getElementById('container');
+
+for (let i = 0; i < team.length; i++) {
+    
+    const dipendenteStampa = team[i];
+    const intestazione = `dipendente ${i + 1}`;
+    const scheda = document.createElement('div');
+    scheda.className = 'dipendente';
+    const title = document.createElement('p');
+    title.className = 'title';
+    title.innerHTML = intestazione;
+    scheda.append(title);
+    container.append(scheda);
+
+    for (const key in dipendenteStampa) {
+        const info = document.createElement('p');
+        info.className = 'info';
+        info.innerHTML = `${key}: ${dipendenteStampa[key]}`;
+        scheda.append(info);
+    }
+    
+}
