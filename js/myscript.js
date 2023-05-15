@@ -72,6 +72,7 @@ for (let i = 0; i < team.length; i++) {
 
     for (const key in dipendenteStampa) {
         console.log(key, ':', dipendenteStampa[key]);
+        console.log(typeof(dipendenteStampa[key]));
     }
     
 }
@@ -94,10 +95,40 @@ for (let i = 0; i < team.length; i++) {
     container.append(scheda);
 
     for (const key in dipendenteStampa) {
+        if (key == 'foto') {
+            console.log('questa è una foto', dipendenteStampa[key]);
+            const fotoNome = dipendenteStampa[key]
+            const linkFoto = `img/${fotoNome}`;
+            const foto = document.createElement('img');
+            foto.src = linkFoto;
+            foto.className = 'foto';
+            scheda.append(foto);
+        } else {
         const info = document.createElement('p');
         info.className = 'info';
         info.innerHTML = `${key}: ${dipendenteStampa[key]}`;
-        scheda.append(info);
+        scheda.append(info);         
+        }   
     }
+}
+
+
+//oppure
+
+for (let i = 0; i < team.length; i++) {
     
+    const dipendenteStampa = team[i];
+
+    const nome = dipendenteStampa.nome;
+    const cognome = dipendenteStampa.cognome;
+    const ruolo = dipendenteStampa.ruolo;
+    const foto = dipendenteStampa.foto;
+
+    const cardElement = `<div class="dipendente">
+                            <img src=img/${foto} alt="">
+                            <div class= "info">${nome}</div>
+                            <div class= "info">${cognome}</div>
+                            <div class= "info">${ruolo}</div>
+                            </div>`;
+    container.innerHTML += cardElement;
 }
